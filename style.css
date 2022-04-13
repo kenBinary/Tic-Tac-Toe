@@ -1,0 +1,19 @@
+.game-board {
+  border: 1px solid black;
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.game-board .row {
+  border: 1px solid black;
+  flex: 1;
+  display: flex;
+}
+.game-board .row .cell {
+  border-left: 1px solid black;
+  flex: 1;
+}
+
+/*# sourceMappingURL=style.css.map */
