@@ -1,19 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
 .game-board {
   border: 1px solid black;
   width: 350px;
   height: 350px;
   margin: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.game-board .row {
-  border: 1px solid black;
-  flex: 1;
-  display: flex;
-}
-.game-board .row .cell {
-  border-left: 1px solid black;
-  flex: 1;
+.game-board div {
+  outline: 1px solid black;
+  width: 33.2%;
+  height: 33%;
 }
 
 /*# sourceMappingURL=style.css.map */
