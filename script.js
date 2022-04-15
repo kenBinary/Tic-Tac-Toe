@@ -6,15 +6,18 @@ const gameBoard = (() => {
 
     const takeInput = (index, input) => {
         board.splice(index, 0, input);
-        updateBoardDisplay();
+        displayController(index,input);
     }
-    const input = document.querySelectorAll(".cell");
-    const displayController = () => {
-
+    const displayController = (index,input) => {
+        const cell = document.querySelectorAll(".cell");
+        cell.forEach((element)=>{
+            if (parseInt(element.id) === index) {
+                element.textContent = input;
+            }
+        });
     }
     return {
         takeInput,
-        input,
         displayController
     };
 })();
@@ -25,3 +28,15 @@ const player = (name, choice) => {
         choice
     }
 }
+
+const game = (() => {
+    // - Initialize Players and Gameboard.
+    // - TicTacToe module handles a playRound function.
+    // - Player 1 (X) picks a square.
+    // - Gameboard array changes
+    // - displayController renders the new Gameboard
+    // - Player 2 (O) turn and picks a square.
+    // - Check winner every round.
+    // -.....and so on.
+
+})();
