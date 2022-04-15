@@ -5,10 +5,11 @@ const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
 
     const takeInput = (index, input) => {
-        board.splice(index, 0, input);
-        displayController(index,input);
+        board.splice(parseInt(index) , 0, input);
+        updateDisplay(parseInt(index),input);
     }
-    const displayController = (index,input) => {
+
+    const updateDisplay = (index,input) => {
         const cell = document.querySelectorAll(".cell");
         cell.forEach((element)=>{
             if (parseInt(element.id) === index) {
@@ -18,7 +19,7 @@ const gameBoard = (() => {
     }
     return {
         takeInput,
-        displayController
+        updateDisplay
     };
 })();
 
@@ -28,6 +29,9 @@ const player = (name, choice) => {
         choice
     }
 }
+
+const firstPlayer = player("Player 1","x");
+const secondPlayer = player("Player 2", "o");
 
 const game = (() => {
     // - Initialize Players and Gameboard.
@@ -39,4 +43,26 @@ const game = (() => {
     // - Check winner every round.
     // -.....and so on.
 
+
+    const playGame = (takeInput)=>{
+        const cell = document.querySelectorAll(".cell");
+        cell.forEach((element)=>{
+            element.addEventListener('click',(e)=>{
+                console.log(element.id);
+                console.log(e.target.id);
+                takeInput(element.id,"x");
+            });
+        });
+
+    }
+
+
+    
+    return{
+        playGame
+    }
+
 })();
+
+
+game.playGame(gameBoard.takeInput);
