@@ -12,10 +12,14 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-.game-board div {
+.game-board div.cell {
   outline: 1px solid black;
   width: 33.2%;
   height: 33%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 6rem;
+  line-height: 90px;
 }
 
 /*# sourceMappingURL=style.css.map */
