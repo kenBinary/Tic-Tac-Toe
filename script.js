@@ -5,7 +5,7 @@ const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
 
     const takeInput = (index, input) => {
-        board.splice(parseInt(index) , 0, input);
+        board.splice(index , 1, input);
         updateDisplay(parseInt(index),input);
     }
 
@@ -17,9 +17,13 @@ const gameBoard = (() => {
             }
         });
     }
+
+
     return {
         takeInput,
-        updateDisplay
+        updateDisplay,
+        board
+        
     };
 })();
 
@@ -48,16 +52,17 @@ const game = (() => {
         const cell = document.querySelectorAll(".cell");
         cell.forEach((element)=>{
             element.addEventListener('click',(e)=>{
-                console.log(element.id);
-                console.log(e.target.id);
-                takeInput(element.id,"x");
+                if ((e.target.textContent)==="") {
+                    takeInput(element.id,"x");
+                    console.log(element.id);
+                }
             });
         });
 
     }
 
 
-    
+
     return{
         playGame
     }
