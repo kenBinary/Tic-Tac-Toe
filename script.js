@@ -28,9 +28,11 @@ const gameBoard = (() => {
 })();
 
 const player = (name, choice) => {
+    const isTurn = false;
     return {
         name,
-        choice
+        choice,
+        isTurn
     }
 }
 
@@ -48,13 +50,26 @@ const game = (() => {
 
     const players = [];
 
+    const initializePlayers = (playerOne,playerTwo)=>{
+        const firstPlayer = playerOne;
+        const secondPlayer = playerTwo
+        players.push(firstPlayer,secondPlayer);
+    }
     const playGame = (takeInput)=>{
         const cell = document.querySelectorAll(".cell");
         cell.forEach((element)=>{
             element.addEventListener('click',(e)=>{
                 if ((e.target.textContent)==="") {
-                    takeInput(element.id,"x");
-                    console.log(element.id);
+                    if (!players[0].isTurn) {
+                        takeInput(element.id,players[0].choice)
+                        players[0].isTurn = !players[0].isTurn
+                        players[1].isTurn = !players[1].isTurn
+                    }
+                    else if (players[1].isTurn) {
+                        takeInput(element.id,players[1].choice)
+                        players[0].isTurn = !players[0].isTurn
+                        players[1].isTurn = !players[1].isTurn
+                    }
                 }
             });
         });
@@ -62,11 +77,7 @@ const game = (() => {
     }
 
     //intialize players
-    const initializePlayers = (playerOne,playerTwo)=>{
-        const firstPlayer = playerOne;
-        const secondPlayer = playerTwo
-        players.push(firstPlayer,secondPlayer);
-    }
+
 
 
     return{
@@ -76,6 +87,7 @@ const game = (() => {
     }
 
 })();
-
-
+const first = player("test","x");
+const second = player("test2","o");
+game.initializePlayers(first,second);
 game.playGame(gameBoard.takeInput);
