@@ -34,9 +34,6 @@ const player = (name, choice) => {
     }
 }
 
-const firstPlayer = player("Player 1","x");
-const secondPlayer = player("Player 2", "o");
-
 const game = (() => {
     // - Initialize Players and Gameboard.
     // - TicTacToe module handles a playRound function.
@@ -46,7 +43,10 @@ const game = (() => {
     // - Player 2 (O) turn and picks a square.
     // - Check winner every round.
     // -.....and so on.
+    // const firstPlayer = {};
+    // const
 
+    const players = [];
 
     const playGame = (takeInput)=>{
         const cell = document.querySelectorAll(".cell");
@@ -61,10 +61,18 @@ const game = (() => {
 
     }
 
+    //intialize players
+    const initializePlayers = (playerOne,playerTwo)=>{
+        const firstPlayer = playerOne;
+        const secondPlayer = playerTwo
+        players.push(firstPlayer,secondPlayer);
+    }
 
 
     return{
-        playGame
+        playGame,
+        initializePlayers,
+        players
     }
 
 })();
