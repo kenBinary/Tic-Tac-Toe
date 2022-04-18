@@ -138,6 +138,12 @@ const game = (() => {
             return value === "o";
         }
     }
+
+    const winChecker = (board)=>{
+        horizontalChecker(board);
+        verticalChecker(board);
+        diagonalChecker(board);
+    }
     
     const playGame = (takeInput,board)=>{
         const cell = document.querySelectorAll(".cell");
@@ -146,17 +152,13 @@ const game = (() => {
                 if ((e.target.textContent)==="") {
                     if (!players[0].isTurn) {
                         takeInput(element.id,players[0].choice)
-                        horizontalChecker(board);
-                        verticalChecker(board);
-                        diagonalChecker(board);
+                        winChecker(board);
                         players[0].isTurn = !players[0].isTurn
                         players[1].isTurn = !players[1].isTurn
                     }
                     else if (players[1].isTurn) {
                         takeInput(element.id,players[1].choice)
-                        horizontalChecker(board);
-                        verticalChecker(board);
-                        diagonalChecker(board);
+                        winChecker(board);
                         players[0].isTurn = !players[0].isTurn
                         players[1].isTurn = !players[1].isTurn
                     }
