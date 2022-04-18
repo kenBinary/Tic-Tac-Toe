@@ -57,30 +57,84 @@ const game = (() => {
     }
 
     const horizontalChecker = (board)=>{
-        const a = [...board];
         const rows = {
-            first: a.slice(0,3),
-            second: a.slice(3,6),
-            third: a.slice(6,9)
+            first: board.slice(0,3),
+            second: board.slice(3,6),
+            third: board.slice(6,9)
         }
-        if (rows.first.every(test) || rows.first.every(test2)) {
+        if (rows.first.every(xChecker) || rows.first.every(oChecker)) {
             console.log("win first row")
         }
-        else if(rows.second.every(test) || rows.second.every(test2)){
+        else if(rows.second.every(xChecker) || rows.second.every(oChecker)){
             console.log("win second row")
 
         }
-        else if(rows.third.every(test) || rows.third.every(test2)){
+        else if(rows.third.every(xChecker) || rows.third.every(oChecker)){
             console.log("win third row")
         }
-        else{
-            console.log("no winner")
-        }
 
-        function test(value) {
+        function xChecker(value) {
             return value === "x";
         }
-        function test2(value) {
+        function oChecker(value) {
+            return value === "o";
+        }
+    }
+
+    const verticalChecker = (board)=>{
+        const columns = {
+            first: board.filter((cValue,index)=>{
+                return index === 0 || index == 3 || index === 6 ? true: false;
+            }),
+            second: board.filter((cValue,index)=>{
+                return index === 1 || index == 4 || index === 7 ? true: false;
+            }),
+            third: board.filter((cValue,index)=>{
+                return index === 2 || index == 5 || index === 8 ? true: false;
+
+            })
+        }
+        if (columns.first.every(xChecker) || columns.first.every(oChecker)) {
+            console.log("win first row")
+        }
+        else if(columns.second.every(xChecker) || columns.second.every(oChecker)){
+            console.log("win second row")
+
+        }
+        else if(columns.third.every(xChecker) || columns.third.every(oChecker)){
+            console.log("win third row")
+        }
+
+        function xChecker(value) {
+            return value === "x";
+        }
+        function oChecker(value) {
+            return value === "o";
+        }
+    }
+
+
+    const diagonalChecker = (board)=>{
+        const diagonal = {
+            first: board.filter((cValue,index)=>{
+                return index === 2 || index == 4 || index === 6 ? true: false;
+            }),
+            second: board.filter((cValue,index)=>{
+                return index === 0 || index == 4 || index === 8 ? true: false;
+            })
+        }
+
+        if (diagonal.first.every(xChecker) || diagonal.first.every(oChecker)) {
+            console.log("win first bruh")
+        }
+        else if(diagonal.second.every(xChecker) || diagonal.second.every(oChecker)){
+            console.log("win second test")
+
+        }
+        function xChecker(value) {
+            return value === "x";
+        }
+        function oChecker(value) {
             return value === "o";
         }
     }
@@ -93,12 +147,16 @@ const game = (() => {
                     if (!players[0].isTurn) {
                         takeInput(element.id,players[0].choice)
                         horizontalChecker(board);
+                        verticalChecker(board);
+                        diagonalChecker(board);
                         players[0].isTurn = !players[0].isTurn
                         players[1].isTurn = !players[1].isTurn
                     }
                     else if (players[1].isTurn) {
                         takeInput(element.id,players[1].choice)
                         horizontalChecker(board);
+                        verticalChecker(board);
+                        diagonalChecker(board);
                         players[0].isTurn = !players[0].isTurn
                         players[1].isTurn = !players[1].isTurn
                     }
@@ -110,13 +168,12 @@ const game = (() => {
 
     //intialize players
 
-
-
     return{
         playGame,
         initializePlayers,
         players,
-        horizontalChecker
+        horizontalChecker,
+        verticalChecker
     }
 
 })();
