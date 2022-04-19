@@ -3,7 +3,6 @@
 }
 
 .game-board {
-  border: 1px solid black;
   width: 350px;
   height: 350px;
   margin: auto;
@@ -12,14 +11,72 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-.game-board div.cell {
-  outline: 1px solid black;
+.game-board .cell {
   width: 33.2%;
   height: 33%;
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
   font-size: 6rem;
   line-height: 90px;
+}
+.game-board .cell:nth-child(3n-2) {
+  border-right: 3px solid black;
+}
+.game-board .cell:nth-child(3n-3) {
+  border-left: 3px solid black;
+}
+.game-board .cell:nth-last-child(-n+3) {
+  border-top: 3px solid black;
+}
+.game-board .cell:nth-child(-n+3) {
+  border-bottom: 3px solid black;
+}
+.game-board .cell:hover {
+  background-color: rgb(216, 216, 216);
+}
+
+.initiate-game {
+  margin: auto;
+  margin-top: 20px;
+  width: 350px;
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  padding: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.initiate-game .player {
+  border-radius: 5px;
+  border: 1px solid black;
+  flex: 1;
+  flex-basis: 48%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+.initiate-game .player:hover {
+  background-color: rgb(214, 214, 214);
+}
+.initiate-game .reset-game {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.initiate-game .reset-game:hover {
+  background-color: rgb(214, 214, 214);
+}
+
+.turn {
+  box-shadow: 3px 6px green;
 }
 
 /*# sourceMappingURL=style.css.map */
