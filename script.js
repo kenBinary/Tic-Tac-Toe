@@ -168,6 +168,20 @@ const game = (() => {
 
     }
 
+    const resetGame = (board) => {
+        const resetButton = document.querySelector(".reset-game");
+        resetButton.addEventListener('click',()=>{
+            board.forEach((cValue,index,arr)=>{
+                arr[index] = "";
+            })
+            const cells = document.querySelectorAll(".cell");
+            cells.forEach((cell)=>{
+                cell.textContent = ""
+            });
+
+        });
+    }
+
     //intialize players
 
     return{
@@ -175,11 +189,16 @@ const game = (() => {
         initializePlayers,
         players,
         horizontalChecker,
-        verticalChecker
+        verticalChecker,
+        resetGame
     }
 
 })();
+
+
+
 const first = player("test","x");
 const second = player("test2","o");
 game.initializePlayers(first,second);
 game.playGame(gameBoard.takeInput,gameBoard.board); 
+game.resetGame(gameBoard.board);
