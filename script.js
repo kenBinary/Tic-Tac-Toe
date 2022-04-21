@@ -177,7 +177,10 @@ const game = (() => {
             const cells = document.querySelectorAll(".cell");
             cells.forEach((cell)=>{
                 cell.textContent = ""
-            });
+            })
+            const popup = document.querySelector(".player-win-popup");
+            popup.classList.remove("show");
+            console.log(popup);
 
         });
     }
