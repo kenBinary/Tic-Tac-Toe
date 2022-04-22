@@ -60,7 +60,6 @@ const game = (() => {
     }
     const popupShow = (value) =>{
         const popup = document.querySelector(".player-win-popup");
-        console.log("alskdjf");
         if (value===1) {
             popup.classList.add("show");
             popup.textContent = "Player X Wins!"
@@ -107,10 +106,12 @@ const game = (() => {
         }
 
         if (columns.first.every(xChecker)|| columns.second.every(xChecker) ||columns.third.every(xChecker) ) {
-            console.log("win X");
+            popupShow(1);
+
         }
         else if( columns.first.every(oChecker)|| columns.second.every(oChecker)||columns.third.every(oChecker)){
-            console.log("win O")
+            popupShow(2);
+
         }
 
         function xChecker(value) {
@@ -132,10 +133,12 @@ const game = (() => {
             })
         }
         if (diagonal.first.every(xChecker) || diagonal.second.every(xChecker)) {
-            console.log("win x");
+            popupShow(1);
+
         }
         else if(diagonal.first.every(oChecker) || diagonal.second.every(oChecker)){
-            console.log("win o");
+            popupShow(2);
+
 
         }
         function xChecker(value) {
@@ -187,7 +190,6 @@ const game = (() => {
             })
             const popup = document.querySelector(".player-win-popup");
             popup.classList.remove("show");
-            console.log(popup);
 
         });
     }
