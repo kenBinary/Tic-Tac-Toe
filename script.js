@@ -37,16 +37,6 @@ const player = (name, choice) => {
 }
 
 const game = (() => {
-    // - Initialize Players and Gameboard.
-    // - TicTacToe module handles a playRound function.
-    // - Player 1 (X) picks a square.
-    // - Gameboard array changes
-    // - displayController renders the new Gameboard
-    // - Player 2 (O) turn and picks a square.
-    // - Check winner every round.
-    // -.....and so on.
-    // const firstPlayer = {};
-    // const
 
     const players = [];
 
@@ -62,15 +52,11 @@ const game = (() => {
             second: board.slice(3,6),
             third: board.slice(6,9)
         }
-        if (rows.first.every(xChecker) || rows.first.every(oChecker)) {
-            console.log("win first row")
+        if (rows.first.every(xChecker)|| rows.second.every(xChecker) ||rows.third.every(xChecker) ) {
+            console.log("win X");
         }
-        else if(rows.second.every(xChecker) || rows.second.every(oChecker)){
-            console.log("win second row")
-
-        }
-        else if(rows.third.every(xChecker) || rows.third.every(oChecker)){
-            console.log("win third row")
+        else if( rows.first.every(oChecker)|| rows.second.every(oChecker)||rows.third.every(oChecker)){
+            console.log("win O")
         }
 
         function xChecker(value) {
@@ -94,15 +80,12 @@ const game = (() => {
 
             })
         }
-        if (columns.first.every(xChecker) || columns.first.every(oChecker)) {
-            console.log("win first row")
-        }
-        else if(columns.second.every(xChecker) || columns.second.every(oChecker)){
-            console.log("win second row")
 
+        if (columns.first.every(xChecker)|| columns.second.every(xChecker) ||columns.third.every(xChecker) ) {
+            console.log("win X");
         }
-        else if(columns.third.every(xChecker) || columns.third.every(oChecker)){
-            console.log("win third row")
+        else if( columns.first.every(oChecker)|| columns.second.every(oChecker)||columns.third.every(oChecker)){
+            console.log("win O")
         }
 
         function xChecker(value) {
@@ -111,9 +94,9 @@ const game = (() => {
         function oChecker(value) {
             return value === "o";
         }
+
     }
-
-
+    
     const diagonalChecker = (board)=>{
         const diagonal = {
             first: board.filter((cValue,index)=>{
@@ -123,12 +106,11 @@ const game = (() => {
                 return index === 0 || index == 4 || index === 8 ? true: false;
             })
         }
-
-        if (diagonal.first.every(xChecker) || diagonal.first.every(oChecker)) {
-            console.log("win first bruh")
+        if (diagonal.first.every(xChecker) || diagonal.second.every(xChecker)) {
+            console.log("win x");
         }
-        else if(diagonal.second.every(xChecker) || diagonal.second.every(oChecker)){
-            console.log("win second test")
+        else if(diagonal.first.every(oChecker) || diagonal.second.every(oChecker)){
+            console.log("win o");
 
         }
         function xChecker(value) {
