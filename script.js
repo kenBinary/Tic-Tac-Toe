@@ -45,7 +45,18 @@ const game = (() => {
         const secondPlayer = playerTwo
         players.push(firstPlayer,secondPlayer);
     }
-
+    const popupShow = (value) =>{
+        const popup = document.querySelector(".player-win-popup");
+        console.log("alskdjf");
+        if (value===1) {
+            popup.classList.add("show");
+            popup.textContent = "Player X Wins!"
+        }
+        if (value===2) {
+            popup.classList.add("show");
+            popup.textContent = "Player O Wins!";
+        }
+    }
     const horizontalChecker = (board)=>{
         const rows = {
             first: board.slice(0,3),
@@ -53,10 +64,10 @@ const game = (() => {
             third: board.slice(6,9)
         }
         if (rows.first.every(xChecker)|| rows.second.every(xChecker) ||rows.third.every(xChecker) ) {
-            console.log("win X");
+            popupShow(1);
         }
         else if( rows.first.every(oChecker)|| rows.second.every(oChecker)||rows.third.every(oChecker)){
-            console.log("win O")
+            popupShow(2);
         }
 
         function xChecker(value) {
@@ -96,7 +107,7 @@ const game = (() => {
         }
 
     }
-    
+
     const diagonalChecker = (board)=>{
         const diagonal = {
             first: board.filter((cValue,index)=>{
