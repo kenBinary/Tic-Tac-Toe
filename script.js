@@ -27,23 +27,36 @@ const gameBoard = (() => {
     };
 })();
 
-const player = (name, choice) => {
+const player = (name, choice,score) => {
     const isTurn = false;
+    score = 0;
     return {
         name,
         choice,
-        isTurn
+        isTurn,
+        score
     }
 }
 
 const game = (() => {
 
     const players = [];
-
     const initializePlayers = (playerOne,playerTwo)=>{
         const firstPlayer = playerOne;
         const secondPlayer = playerTwo
         players.push(firstPlayer,secondPlayer);
+    }
+    const addScore = (value)=>{
+        const xScore = document.querySelector(".x-score");
+        const oScore = document.querySelector(".o-score");
+        if (value == 1) {
+            players[0].score += 1;
+            xScore.textContent = `Score: ${players[0].score}`;
+        } 
+        if (value == 2) {
+            players[1].score += 1;
+            oScore.textContent = `Score: ${players[1].score}`;
+        }
     }
     const popupShow = (value) =>{
         const popup = document.querySelector(".player-win-popup");
@@ -56,6 +69,7 @@ const game = (() => {
             popup.classList.add("show");
             popup.textContent = "Player O Wins!";
         }
+        addScore(value);
     }
     const horizontalChecker = (board)=>{
         const rows = {
